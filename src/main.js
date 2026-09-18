@@ -97,10 +97,12 @@ function renderDesktopIcons() {
     iconEl.appendChild(iconImage);
     iconEl.appendChild(label);
 
-    // Single click = select
+    // Single click = select; on a phone a tap opens (nobody double-taps on glass)
+    const TOUCH = matchMedia('(hover: none)').matches;
     iconEl.addEventListener('click', (e) => {
       e.stopPropagation();
       selectIcon(iconEl);
+      if (TOUCH) handleIconOpen(client);
     });
 
     // Double click = open

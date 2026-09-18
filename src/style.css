@@ -1215,3 +1215,47 @@ body { font-family: Tahoma, 'Segoe UI', sans-serif; }
 .boot-text small sup { font-size: 9px; }
 .boot-word { font-family: 'Archivo', 'Franklin Gothic Medium', Arial, sans-serif; font-size: 58px; font-weight: 800; letter-spacing: -2.5px; line-height: 1.05; background: none; -webkit-background-clip: initial; background-clip: initial; color: #fff; filter: none; }
 .boot-xp { font-family: 'Archivo', 'Trebuchet MS', sans-serif; font-style: italic; font-weight: 600; font-size: 36px; letter-spacing: -1px; margin-left: 5px; vertical-align: 9px; background: none; -webkit-background-clip: initial; background-clip: initial; color: #f7941d; filter: none; }
+
+/* ============================================
+   PHONE. Everything fits, nothing overflows, and it still looks like XP.
+   ============================================ */
+@media (max-width: 640px) {
+  /* boot: stacked, sized to the screen */
+  .boot-logo { flex-direction: column; gap: 14px; margin-bottom: 40px; text-align: center; }
+  .boot-stars { width: 84px; height: 84px; }
+  .boot-text { align-items: center; }
+  .boot-text small { font-size: 14px; margin: 0; }
+  .boot-word { font-size: 44px; letter-spacing: -2px; }
+  .boot-xp { font-size: 28px; vertical-align: 7px; }
+  .boot-loader { width: 180px; height: 16px; }
+  .loader-blocks i { width: 12px; height: 10px; }
+  @keyframes xpBar { from { transform: translateX(-46px); } to { transform: translateX(186px); } }
+  .boot-subtext { left: 18px; right: 18px; bottom: 22px; font-size: 11px; }
+  #boot-screen .post { padding: 18px 14px; font-size: 11.5px; line-height: 1.5; }
+  .welcome__band { gap: 16px; }
+  .welcome__logo { width: 48px; height: 48px; }
+  .welcome__text { font-size: 28px; }
+  /* desktop: icons flow in rows, four across, using the whole width */
+  #desktop-icons { grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); grid-template-rows: none; gap: 6px 0; padding: 10px 4px; justify-items: center; }
+  .desktop-icon { width: 100%; max-width: 86px; padding: 6px 2px; }
+  .desktop-icon .icon-image { width: 46px; height: 46px; font-size: 32px; }
+  .desktop-icon .icon-image img { width: 46px; height: 46px; }
+  .desktop-icon .icon-label { font-size: 10.5px; max-width: 86px; }
+  /* windows: full width sheets */
+  .xp-window.window { min-width: 0; min-height: 0; left: 4px !important; top: 4px !important; right: 4px; width: auto !important; max-width: none; height: calc(100% - 42px) !important; }
+  .window-body { font-size: 13px; }
+  .about-services-grid { grid-template-columns: repeat(2, 1fr); }
+  .client-content { padding: 16px 12px; }
+  /* start menu: a bottom sheet, both columns stacked */
+  #start-menu { width: 100%; left: 0; right: 0; max-height: calc(100% - 34px); overflow: auto; border-radius: 8px 8px 0 0; }
+  .start-menu-body { flex-direction: column; min-height: 0; }
+  .start-menu-right { display: block; width: 100%; border-left: 0; border-top: 1px solid #95bde7; display: grid; grid-template-columns: 1fr 1fr; padding: 4px; }
+  .start-menu-separator-right { grid-column: 1 / -1; }
+  .start-menu-item { padding: 8px 10px; }
+  /* taskbar */
+  #taskbar { height: 34px; }
+  #start-button span { display: inline; }
+  .taskbar-item { max-width: 120px; }
+  .taskbar-item span:not(.taskbar-icon) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #tray-icons { display: none; }
+}

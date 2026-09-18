@@ -5,7 +5,7 @@
 
 export const clients = [
   // ── system
-  { id: 'internet', name: 'Internet', icon: '🌐', iconType: 'image', iconSrc: 'icons/ie.png', iconFallback: 'icons/globe.svg', description: 'The Looter browser. Coming soon.', services: [], isSpecial: true, action: 'about' },
+  { id: 'sazzy', name: 'Sazzy', icon: '🌐', iconType: 'image', iconSrc: 'icons/sazzy.png', iconClass: 'raw', isSpecial: true, action: 'sazzy' },
   { id: 'louv', name: 'LUV Agency', icon: '♥', iconType: 'image', iconSrc: 'luv-logo.svg', isSpecial: true, action: 'about' },
   { id: 'mi-pc', name: 'My Computer', icon: '🖥️', iconType: 'image', iconSrc: 'icons/computer.svg', isSpecial: true, action: 'about' },
   { id: 'papelera', name: 'Recycle Bin', icon: '🗑️', iconType: 'image', iconSrc: 'icons/bin.svg', isSpecial: true, action: 'recycle' },

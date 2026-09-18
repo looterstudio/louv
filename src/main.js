@@ -129,9 +129,22 @@ function handleIconOpen(client) {
     if (client.action === 'about') openAboutWindow();
     else if (client.action === 'game') openGameError(client);
     else if (client.action === 'contact') openContactWindow();
+    else if (client.action === 'sazzy') openSazzy();
     return;
   }
   openClientWindow(client);
+}
+
+// Sazzy: the Looter browser. Not yet. For now, a window that says so.
+function openSazzy() {
+  const content = `
+    <div class="sazzy">
+      <img src="icons/sazzy.png" alt="">
+      <h2>Sazzy</h2>
+      <p>The Looter browser. Coming soon.</p>
+      <div class="sazzy__bar"><span>http://</span><i>sazzy.looterstudio.xyz</i></div>
+    </div>`;
+  createWindow('sazzy', 'Sazzy', '🌐', content, { width: '460px', height: '380px' });
 }
 
 // a game shortcut from 2004: it asks for the disc and never runs

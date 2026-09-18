@@ -1292,3 +1292,10 @@ body { font-family: Tahoma, 'Segoe UI', sans-serif; }
 #start-button { font-size: 15px; }
 .about-content h2 { font-size: 30px; }
 @media (max-width: 640px) { .boot-name { font-size: 52px; } }
+.desktop-icon .icon-image img.raw { border-radius: 0; box-shadow: none; }
+.sazzy { text-align: center; padding: 28px 20px; font-family: Tahoma, sans-serif; }
+.sazzy img { width: 120px; height: 120px; object-fit: contain; }
+.sazzy h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px; margin: 8px 0 4px; letter-spacing: -.03em; }
+.sazzy p { color: #555; font-size: 13px; margin: 0 0 18px; }
+.sazzy__bar { display: flex; gap: 6px; align-items: center; border: 1px solid #7f9db9; background: #fff; padding: 5px 8px; font-size: 12px; color: #999; text-align: left; }
+.sazzy__bar i { font-style: normal; color: #000; }

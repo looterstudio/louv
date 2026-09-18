@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
 
-// Served at looterstudio.xyz/louv/ (a project site under the org's custom domain)
-export default defineConfig({ base: '/louvre/' });
+// Served at looterstudio.xyz/louvre/ (a project site under the org's custom domain).
+// xp.css has a selector lightningcss refuses to minify, so CSS minification is off.
+export default defineConfig({ base: '/louvre/', build: { cssMinify: false } });

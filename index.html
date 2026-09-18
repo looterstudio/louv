@@ -3,32 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="LOUV - Creative Digital Agency | Web Design, Software, Ads, Branding & Social Media. Part of LooterStudio®." />
-  <title>LOUV — Creative Digital Agency | LooterStudio®</title>
+  <meta name="description" content="LOUVRE - Creative Digital Agency | Web Design, Software, Ads, Branding & Social Media. Part of LooterStudio®." />
+  <title>LOUVRE — Creative Digital Agency | LooterStudio®</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/jpeg" href="/louv-logo.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,800;1,600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="louvre-logo.svg">
 </head>
 <body>
-  <!-- Boot Screen -->
+  <!-- Boot: POST screen, then the XP loader, then Welcome -->
   <div id="boot-screen">
-    <div class="boot-content">
+    <pre class="post" id="post">LooterStudio® BIOS v2.0.26  ·  always early, never wrong
+Copyright (C) 2026 LooterStudio®
+
+CPU  : LOOT-1 @ 4.20 GHz
+RAM  : 640K (should be enough for anybody)
+GPU  : Delusional Mindset Accelerator
+DISK : C: LOUVRE  D: BRIER  E: STAT
+
+Detecting clients ........ OK
+Loading taste ............ OK
+Checking for losers ...... NONE FOUND
+
+Booting LOUVRE OS<span class="post__cur">_</span></pre>
+    <div class="boot-content" id="boot-xp">
       <div class="boot-logo">
-        <img src="/louv-logo.jpg" alt="LOUV" class="boot-logo-img">
-        <span class="boot-text">LOUV<span class="boot-xp">OS</span></span>
+        <svg class="boot-stars" viewBox="31.5 221.8 3545.5 3545.5" xmlns="http://www.w3.org/2000/svg" aria-label="LooterStudio"><polygon class="bs bs-1" points="2705.6,1395.2 2522.1,1173.1 2254.2,1279.0 2408.7,1035.9 2225.2,813.8 2504.2,885.6 2658.7,642.5 2676.6,930.0 2955.6,1001.8 2687.7,1107.7" fill="#fff"/><polygon class="bs bs-2" points="2069.1,1186.2 1719.4,1333.9 1751.8,1712.1 1503.2,1425.2 1153.5,1572.9 1349.6,1247.8 1101.1,960.9 1470.8,1046.9 1666.9,721.9 1699.4,1100.1" fill="#fff"/><polygon class="bs bs-3" points="1635.9,1903.7 1231.9,2198.3 1387.2,2673.6 982.2,2380.4 578.2,2674.9 731.9,2199.2 326.9,1906.0 826.9,1905.1 980.6,1429.3 1135.9,1904.6" fill="#fff"/><polygon class="bs bs-4" points="3031.4,1484.3 3071.7,1691.8 3281.5,1717.6 3096.6,1820.0 3136.9,2027.5 2982.3,1883.3 2797.4,1985.8 2886.8,1794.2 2732.2,1650.0 2942.0,1675.8" fill="#fff"/><polygon class="bs bs-5" points="3058.2,2548.8 2873.3,2652.6 2914.8,2860.5 2759.0,2716.7 2574.0,2820.5 2662.6,2627.8 2506.8,2484.0 2717.4,2508.7 2806.1,2316.1 2847.6,2524.0" fill="#fff"/><polygon class="bs bs-6" points="2222.9,2869.6 2273.3,3051.8 2462.1,3060.1 2304.4,3164.4 2354.8,3346.5 2207.0,3228.8 2049.3,3333.0 2115.6,3156.0 1967.7,3038.2 2156.6,3046.6" fill="#fff"/></svg>
+        <span class="boot-text"><small>LooterStudio<sup>®</sup></small><span class="boot-word">LOUVRE<span class="boot-xp">os</span></span></span>
       </div>
-      <div class="boot-loader">
-        <div class="loader-blocks">
-          <div class="loader-block"></div>
-          <div class="loader-block"></div>
-          <div class="loader-block"></div>
-        </div>
-      </div>
-      <div class="boot-subtext">
-        <img src="/looterstudio-logo.png" alt="Looter Studios" class="boot-looter-logo">
-        <span>by LooterStudio®</span>
-      </div>
+      <div class="boot-loader"><div class="loader-blocks"><i></i><i></i><i></i></div></div>
+      <div class="boot-subtext"><span>Copyright © 2026 LooterStudio®</span><span class="boot-right">LooterStudio<sup>®</sup></span></div>
+    </div>
+    <div class="welcome" id="welcome">
+      <div class="welcome__band"><span class="welcome__logo"><svg viewBox="31.5 221.8 3545.5 3545.5" xmlns="http://www.w3.org/2000/svg"><polygon class="bs bs-1" points="2705.6,1395.2 2522.1,1173.1 2254.2,1279.0 2408.7,1035.9 2225.2,813.8 2504.2,885.6 2658.7,642.5 2676.6,930.0 2955.6,1001.8 2687.7,1107.7" fill="#fff"/><polygon class="bs bs-2" points="2069.1,1186.2 1719.4,1333.9 1751.8,1712.1 1503.2,1425.2 1153.5,1572.9 1349.6,1247.8 1101.1,960.9 1470.8,1046.9 1666.9,721.9 1699.4,1100.1" fill="#fff"/><polygon class="bs bs-3" points="1635.9,1903.7 1231.9,2198.3 1387.2,2673.6 982.2,2380.4 578.2,2674.9 731.9,2199.2 326.9,1906.0 826.9,1905.1 980.6,1429.3 1135.9,1904.6" fill="#fff"/><polygon class="bs bs-4" points="3031.4,1484.3 3071.7,1691.8 3281.5,1717.6 3096.6,1820.0 3136.9,2027.5 2982.3,1883.3 2797.4,1985.8 2886.8,1794.2 2732.2,1650.0 2942.0,1675.8" fill="#fff"/><polygon class="bs bs-5" points="3058.2,2548.8 2873.3,2652.6 2914.8,2860.5 2759.0,2716.7 2574.0,2820.5 2662.6,2627.8 2506.8,2484.0 2717.4,2508.7 2806.1,2316.1 2847.6,2524.0" fill="#fff"/><polygon class="bs bs-6" points="2222.9,2869.6 2273.3,3051.8 2462.1,3060.1 2304.4,3164.4 2354.8,3346.5 2207.0,3228.8 2049.3,3333.0 2115.6,3156.0 1967.7,3038.2 2156.6,3046.6" fill="#fff"/></svg></span><span class="welcome__text">welcome</span></div>
     </div>
   </div>
 
@@ -42,8 +49,8 @@
     <!-- Start Menu -->
     <div id="start-menu" class="hidden">
       <div class="start-menu-header">
-        <img src="/louv-logo.jpg" alt="LOUV" class="start-menu-avatar">
-        <span class="start-menu-user">LOUV Agency</span>
+        <img src="louvre-logo.svg" alt="LOUVRE" class="start-menu-avatar">
+        <span class="start-menu-user">LOUVRE</span>
       </div>
       <div class="start-menu-body">
         <div class="start-menu-left">
@@ -51,35 +58,35 @@
           <div class="start-menu-item" data-service="web">
             <div class="start-icon">🌐</div>
             <div class="start-item-text">
-              <span class="start-item-title">Web Design</span>
-              <span class="start-item-desc">Premium sites for your brand</span>
+              <span class="start-item-title">Websites</span>
+              <span class="start-item-desc">Sites that look like a real company</span>
             </div>
           </div>
           <div class="start-menu-item" data-service="software">
             <div class="start-icon">💻</div>
             <div class="start-item-text">
-              <span class="start-item-title">Software Development</span>
-              <span class="start-item-desc">Custom-built solutions</span>
+              <span class="start-item-title">Software</span>
+              <span class="start-item-desc">Custom software, automation, AI</span>
             </div>
           </div>
           <div class="start-menu-item" data-service="ads">
             <div class="start-icon">📢</div>
             <div class="start-item-text">
-              <span class="start-item-title">Ads Management</span>
+              <span class="start-item-title">Ads</span>
               <span class="start-item-desc">Campaigns that convert</span>
             </div>
           </div>
           <div class="start-menu-item" data-service="branding">
             <div class="start-icon">🎨</div>
             <div class="start-item-text">
-              <span class="start-item-title">Branding & Identity</span>
-              <span class="start-item-desc">Your brand, your essence</span>
+              <span class="start-item-title">Branding</span>
+              <span class="start-item-desc">Name, logo, identity, voice</span>
             </div>
           </div>
           <div class="start-menu-item" data-service="social">
             <div class="start-icon">📱</div>
             <div class="start-item-text">
-              <span class="start-item-title">Social Media</span>
+              <span class="start-item-title">Social</span>
               <span class="start-item-desc">Content that connects</span>
             </div>
           </div>
@@ -87,7 +94,7 @@
           <div class="start-menu-item" data-action="about">
             <div class="start-icon">ℹ️</div>
             <div class="start-item-text">
-              <span class="start-item-title">About LOUV</span>
+              <span class="start-item-title">About LOUVRE</span>
               <span class="start-item-desc">Learn about us</span>
             </div>
           </div>
@@ -107,7 +114,7 @@
             <span>⚙️ Services</span>
           </div>
           <div class="start-menu-item-right" data-action="looter">
-            <span><img src="/looterstudio-logo.png" alt="★" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;filter:invert(1);">LooterStudio®</span>
+            <span><img src="loot-stars.svg" alt="★" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;">LooterStudio®</span>
           </div>
           <div class="start-menu-separator-right"></div>
           <div class="start-menu-item-right shutdown" data-action="shutdown">
@@ -120,8 +127,8 @@
     <!-- Taskbar -->
     <div id="taskbar">
       <button id="start-button">
-        <img src="/louv-logo.jpg" alt="LOUV" class="start-btn-logo">
-        <span>LOUV</span>
+        <img src="loot-stars.svg" alt="" class="start-btn-logo">
+        <span>LOUVRE</span>
       </button>
       <div id="taskbar-items"></div>
       <div id="system-tray">

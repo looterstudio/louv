@@ -1,175 +1,32 @@
 // ============================================
-// LOUV OS — Client Data
-// Edit this file to add/remove real clients
+// LOUVRE OS — Desktop
+// Every icon is a shortcut. Edit here to add clients.
 // ============================================
 
 export const clients = [
-  {
-    id: 'ie-browser',
-    name: 'Internet',
-    icon: '🌐',
-    iconType: 'emoji',
-    iconSrc: null,
-    url: 'https://louv.agency',
-    description: 'Browse the LOUV portfolio and discover our projects.',
-    services: ['Portfolio', 'Projects'],
-    isSpecial: true,
-  },
-  {
-    id: 'urban-wear',
-    name: 'Urban Wear',
-    icon: '👕',
-    iconType: 'emoji',
-    url: 'https://urbanwear.com',
-    description: 'Urban streetwear brand. We designed their full e-commerce with dynamic catalog and integrated payment system.',
-    services: ['Web Design', 'E-commerce', 'Branding'],
-  },
-  {
-    id: 'cafe-roma',
-    name: 'Café Roma',
-    icon: '☕',
-    iconType: 'emoji',
-    url: 'https://caferoma.com',
-    description: 'Premium coffee chain. Landing page with interactive menu, online reservations, and social media presence.',
-    services: ['Web Design', 'Social Media', 'Ads'],
-  },
-  {
-    id: 'neon-fitness',
-    name: 'Neon Fitness',
-    icon: '💪',
-    iconType: 'emoji',
-    url: 'https://neonfitness.com',
-    description: 'Boutique gym. Booking app, website with training plans, and Meta + Google ads campaign.',
-    services: ['Software', 'Web Design', 'Ads'],
-  },
-  {
-    id: 'aurora-beauty',
-    name: 'Aurora Beauty',
-    icon: '💄',
-    iconType: 'emoji',
-    url: 'https://aurorabeauty.com',
-    description: 'Natural cosmetics line. Online store with express checkout and full brand identity.',
-    services: ['E-commerce', 'Branding', 'Identity'],
-  },
-  {
-    id: 'tech-nova',
-    name: 'TechNova',
-    icon: '🚀',
-    iconType: 'emoji',
-    url: 'https://technova.io',
-    description: 'Tech startup. Internal dashboard, B2B landing page, and SEM/SEO campaign management.',
-    services: ['Software', 'Web Design', 'Ads'],
-  },
-  {
-    id: 'verde-organico',
-    name: 'Verde Organic',
-    icon: '🌿',
-    iconType: 'emoji',
-    url: 'https://verdeorganic.com',
-    description: 'Organic products store. Sustainable e-commerce with integrated delivery and Instagram content.',
-    services: ['E-commerce', 'Social Media', 'Branding'],
-  },
-  {
-    id: 'studio-arc',
-    name: 'Studio ARC',
-    icon: '🏗️',
-    iconType: 'emoji',
-    url: 'https://studioarc.com',
-    description: 'Architecture studio. 3D portfolio, online quote system, and corporate brand identity.',
-    services: ['Web Design', 'Software', 'Identity'],
-  },
-  {
-    id: 'beats-records',
-    name: 'Beats Records',
-    icon: '🎵',
-    iconType: 'emoji',
-    url: 'https://beatsrecords.com',
-    description: 'Independent record label. Streaming platform, artist landing pages, and social media management.',
-    services: ['Software', 'Web Design', 'Social Media'],
-  },
-  {
-    id: 'mi-pc',
-    name: 'My Computer',
-    icon: '🖥️',
-    iconType: 'emoji',
-    url: null,
-    description: null,
-    services: [],
-    isSpecial: true,
-    action: 'about',
-  },
-  {
-    id: 'papelera',
-    name: 'Recycle Bin',
-    icon: '🗑️',
-    iconType: 'emoji',
-    url: null,
-    description: null,
-    services: [],
-    isSpecial: true,
-    action: 'recycle',
-  },
+  // ── system
+  { id: 'internet', name: 'Internet', icon: '🌐', iconType: 'image', iconSrc: 'icons/ie.png', iconFallback: 'icons/globe.svg', description: 'The Looter browser. Coming soon.', services: [], isSpecial: true, action: 'about' },
+  { id: 'louv', name: 'LOUVRE', icon: '♥', iconType: 'image', iconSrc: 'louvre-logo.svg', isSpecial: true, action: 'about' },
+  { id: 'mi-pc', name: 'My Computer', icon: '🖥️', iconType: 'image', iconSrc: 'icons/computer.svg', isSpecial: true, action: 'about' },
+  { id: 'papelera', name: 'Recycle Bin', icon: '🗑️', iconType: 'image', iconSrc: 'icons/bin.svg', isSpecial: true, action: 'recycle' },
+  // ── games (they never open, like the good old days)
+  { id: 'vice-city', name: 'Vice City', icon: '🌴', iconType: 'image', iconSrc: 'icons/vicecity.png', isSpecial: true, action: 'game' },
+  { id: 'tibia', name: 'Tibia', icon: '⚔️', iconType: 'image', iconSrc: 'icons/tibia.png', isSpecial: true, action: 'game' },
+  // ── clients (placeholders until the real ones land)
+  { id: 'urban-wear', name: 'Urban Wear', icon: '👕', iconType: 'folder', url: 'https://urbanwear.com', description: 'Urban streetwear brand. Full e-commerce with dynamic catalog and integrated payments.', services: ['Website', 'E-commerce', 'Branding'] },
+  { id: 'cafe-roma', name: 'Café Roma', icon: '☕', iconType: 'folder', url: 'https://caferoma.com', description: 'Premium coffee chain. Landing page with interactive menu, reservations, and social media.', services: ['Website', 'Social', 'Ads'] },
+  { id: 'neon-fitness', name: 'Neon Fitness', icon: '💪', iconType: 'folder', url: 'https://neonfitness.com', description: 'Boutique gym. Booking app, website with training plans, Meta + Google ads.', services: ['Software', 'Website', 'Ads'] },
+  { id: 'aurora-beauty', name: 'Aurora Beauty', icon: '💄', iconType: 'folder', url: 'https://aurorabeauty.com', description: 'Natural cosmetics. Online store with express checkout and full brand identity.', services: ['E-commerce', 'Branding'] },
+  { id: 'tech-nova', name: 'TechNova', icon: '🚀', iconType: 'folder', url: 'https://technova.io', description: 'Tech startup. Internal dashboard, B2B landing, SEM/SEO campaigns.', services: ['Software', 'Website', 'Ads'] },
+  { id: 'verde-organico', name: 'Verde Organic', icon: '🌿', iconType: 'folder', url: 'https://verdeorganic.com', description: 'Organic food brand. Packaging, identity, and a store that ships.', services: ['Branding', 'E-commerce'] },
+  { id: 'studio-arc', name: 'Studio ARC', icon: '🏗️', iconType: 'folder', url: 'https://studioarc.com', description: 'Architecture studio. Portfolio site and social content.', services: ['Website', 'Social'] },
+  { id: 'beats-records', name: 'Beats Records', icon: '🎵', iconType: 'folder', url: 'https://beatsrecords.com', description: 'Independent label. Release pages, visuals, and launch ads.', services: ['Branding', 'Ads', 'Social'] },
 ];
 
 export const services = {
-  web: {
-    title: '🌐 Web Design & Development',
-    description: 'We create premium websites that turn visitors into customers. From landing pages to complex e-commerce platforms.',
-    features: [
-      'Custom UI/UX design',
-      'Responsive development (mobile-first)',
-      'E-commerce with payment gateways',
-      'Technical SEO & optimization',
-      'Headless CMS & Jamstack',
-      'Animations & micro-interactions',
-    ]
-  },
-  software: {
-    title: '💻 Software Development',
-    description: 'Custom software solutions to automate and scale your business.',
-    features: [
-      'Web & mobile apps',
-      'Dashboards & admin panels',
-      'APIs & integrations',
-      'Databases & backend',
-      'Automations & bots',
-      'Ongoing technical support',
-    ]
-  },
-  ads: {
-    title: '📢 Ads Management',
-    description: 'Digital advertising campaigns that maximize your ROI across all platforms.',
-    features: [
-      'Google Ads (SEM/PPC)',
-      'Meta Ads (Facebook & Instagram)',
-      'TikTok Ads',
-      'Retargeting & remarketing',
-      'A/B testing & optimization',
-      'Detailed monthly reports',
-    ]
-  },
-  branding: {
-    title: '🎨 Branding & Visual Identity',
-    description: 'We build the visual identity that defines your brand and makes it unforgettable.',
-    features: [
-      'Logo & visual system',
-      'Color palette & typography',
-      'Complete brand manual',
-      'Packaging & merchandising',
-      'Corporate stationery',
-      'Digital brandbook',
-    ]
-  },
-  social: {
-    title: '📱 Social Media',
-    description: 'Strategic content that connects with your audience and builds community.',
-    features: [
-      'Content strategy',
-      'Post & stories design',
-      'Community management',
-      'Editorial calendar',
-      'Analytics & metrics',
-      'Collaborations & influencers',
-    ]
-  },
+  web: { title: '🌐 Websites', description: 'Landing pages, stores, and full sites. Designed to look like a real company and built to convert.', items: ['Landing pages', 'E-commerce', 'Web apps', 'SEO and speed', 'Hosting and domains'] },
+  software: { title: '💻 Software', description: 'Custom software, automation, and AI. The things that make a business run without you.', items: ['Dashboards', 'Automation', 'AI agents', 'APIs and integrations', 'Mobile apps'] },
+  ads: { title: '📢 Ads', description: 'Meta, Google, TikTok. Campaigns with a budget, a target, and a number at the end.', items: ['Meta Ads', 'Google Ads', 'TikTok Ads', 'Creatives', 'Analytics and reporting'] },
+  branding: { title: '🎨 Branding', description: 'Name, logo, identity, voice. The part people remember.', items: ['Logo and identity', 'Brand book', 'Packaging', 'Art direction', 'Naming'] },
+  social: { title: '📱 Social', description: 'Content that looks like it costs money. Instagram, TikTok, X.', items: ['Content strategy', 'Design and video', 'Community', 'Growth', 'Launches'] },
 };

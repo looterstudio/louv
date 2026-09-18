@@ -1,9 +1,10 @@
 // ============================================
-// LOUV OS — Main Application
+// LOUVRE OS — Main Application
 // Windows XP Desktop Simulation
 // ============================================
 
 import { clients, services } from './data/clients.js';
+import 'xp.css/dist/XP.css';
 import './style.css';
 
 // ============================================
@@ -23,14 +24,27 @@ let contextMenu = null;
 function initBoot() {
   const bootScreen = document.getElementById('boot-screen');
   const desktop = document.getElementById('desktop');
-
-  setTimeout(() => {
+  const post = document.getElementById('post'), xp = document.getElementById('boot-xp'), welcome = document.getElementById('welcome');
+  const show = (el) => { [post, xp, welcome].forEach((e) => e.classList.toggle('is-on', e === el)); bootScreen.dataset.phase = el.id; };
+  const done = () => {
     bootScreen.classList.add('fade-out');
     desktop.classList.add('visible');
-    setTimeout(() => {
-      bootScreen.style.display = 'none';
-    }, 800);
-  }, 2500);
+    setTimeout(() => { bootScreen.style.display = 'none'; }, 800);
+  };
+  // ?skipboot: straight to the desktop (for screenshots and impatient people)
+  if (location.search.includes('skipboot')) {
+    bootScreen.style.display = 'none'; desktop.classList.add('visible');
+    setTimeout(() => { if (location.search.includes('about')) openAboutWindow(); if (location.search.includes('menu')) document.getElementById('start-button').click(); }, 100);
+    return;
+  }
+  // POST text types itself out, then the XP loader runs, then Welcome
+  show(post);
+  const full = post.innerHTML; post.innerHTML = ''; let i = 0;
+  const type = () => { i += 6; post.innerHTML = full.slice(0, i); if (i < full.length) setTimeout(type, 14); };
+  type();
+  setTimeout(() => show(xp), 2200);
+  setTimeout(() => show(welcome), 8600);
+  setTimeout(done, 10000);
 }
 
 // ============================================
@@ -59,15 +73,22 @@ function renderDesktopIcons() {
     const iconImage = document.createElement('div');
     iconImage.className = 'icon-image';
 
-    if (client.iconType === 'image' && client.iconSrc) {
+    if (client.iconType === 'folder') {
+      const img = document.createElement('img'); img.src = 'icons/folder.svg'; img.alt = ''; img.draggable = false; iconImage.appendChild(img);
+      const em = document.createElement('span'); em.className = 'icon-emblem'; em.textContent = client.icon; iconImage.appendChild(em);
+    } else if (client.iconType === 'image' && client.iconSrc) {
       const img = document.createElement('img');
       img.src = client.iconSrc;
       img.alt = client.name;
       img.draggable = false;
+      if (client.iconClass) img.className = client.iconClass;
+      // an icon file that is not there yet falls back to the emoji
+      img.onerror = () => { if (client.iconFallback && !img.dataset.fb) { img.dataset.fb = '1'; img.src = client.iconFallback; } else iconImage.textContent = client.icon; };
       iconImage.appendChild(img);
     } else {
       iconImage.textContent = client.icon;
     }
+    const arrow = document.createElement('span'); arrow.className = 'icon-shortcut'; iconImage.appendChild(arrow);
 
     const label = document.createElement('div');
     label.className = 'icon-label';
@@ -101,18 +122,28 @@ function selectIcon(iconEl) {
 }
 
 function handleIconOpen(client) {
+  if (client.href) { window.open(client.href, '_blank', 'noopener'); return; }
   if (client.isSpecial) {
-    if (client.action === 'about') {
-      openAboutWindow();
-    } else if (client.action === 'recycle') {
-      return;
-    } else if (client.id === 'ie-browser') {
-      openAboutWindow();
-    }
+    if (client.action === 'about') openAboutWindow();
+    else if (client.action === 'game') openGameError(client);
     return;
   }
-
   openClientWindow(client);
+}
+
+// a game shortcut from 2004: it asks for the disc and never runs
+function openGameError(client) {
+  const content = `
+    <div class="xp-error">
+      <div class="xp-error__icon">⛔</div>
+      <div>
+        <p><b>${client.name}</b> could not start.</p>
+        <p>Please insert Disc 1 and try again. (Error 0x4C4F4F54)</p>
+      </div>
+    </div>
+    <div class="xp-error__actions"><button class="xp-btn" data-close>OK</button></div>`;
+  const win = createWindow('err-' + client.id, client.name, client.icon, content, { width: '380px', height: '190px' });
+  win.querySelector('[data-close]').addEventListener('click', () => closeWindow('err-' + client.id));
 }
 
 // ============================================
@@ -126,7 +157,7 @@ function createWindow(id, title, icon, content, options = {}) {
 
   const container = document.getElementById('windows-container');
   const win = document.createElement('div');
-  win.className = 'xp-window';
+  win.className = 'xp-window window';
   win.dataset.windowId = id;
 
   const offsetCount = Object.keys(openWindows).length;
@@ -139,14 +170,13 @@ function createWindow(id, title, icon, content, options = {}) {
   win.style.zIndex = ++windowZIndex;
 
   const titlebar = document.createElement('div');
-  titlebar.className = 'window-titlebar';
+  titlebar.className = 'window-titlebar title-bar';
   titlebar.innerHTML = `
-    <span class="window-titlebar-icon">${icon}</span>
-    <span class="window-titlebar-text">${title}</span>
-    <div class="window-controls">
-      <button class="window-btn window-btn-minimize" title="Minimize">_</button>
-      <button class="window-btn window-btn-maximize" title="Maximize">□</button>
-      <button class="window-btn window-btn-close" title="Close">✕</button>
+    <div class="title-bar-text"><span class="window-titlebar-icon">${icon}</span>${title}</div>
+    <div class="title-bar-controls">
+      <button class="window-btn window-btn-minimize" aria-label="Minimize"></button>
+      <button class="window-btn window-btn-maximize" aria-label="Maximize"></button>
+      <button class="window-btn window-btn-close" aria-label="Close"></button>
     </div>
   `;
 
@@ -303,7 +333,7 @@ function openClientWindow(client) {
 
   const iconHtml = client.iconType === 'image' && client.iconSrc
     ? `<img src="${client.iconSrc}" alt="${client.name}">`
-    : client.icon;
+    : `<span class="client-emblem">${client.icon}</span>`;
 
   const content = `
     <div class="client-content">
@@ -361,44 +391,24 @@ function openServiceWindow(serviceKey) {
 function openAboutWindow() {
   const content = `
     <div class="about-content">
-      <img src="/louv-logo.jpg" alt="LOUV" style="width:80px;height:80px;object-fit:contain;border-radius:16px;margin-bottom:8px;">
-      <h2>LOUV</h2>
-      <p class="about-sub">Creative Digital Agency</p>
-      <p>We transform ideas into unique digital experiences. From web design to full online brand management.</p>
+      <img src="louvre-logo.svg" alt="LOUVRE" class="about-logo">
+      <h2>LOUVRE</h2>
+      <p class="about-sub">The agency of LooterStudio®</p>
+      <p>We build internet businesses and brands. Websites, software, ads, branding, social. Everything, as one team.</p>
       <div class="about-services-grid">
-        <div class="about-service-card">
-          <div class="card-icon">🌐</div>
-          <div class="card-title">Web Design</div>
-        </div>
-        <div class="about-service-card">
-          <div class="card-icon">💻</div>
-          <div class="card-title">Software</div>
-        </div>
-        <div class="about-service-card">
-          <div class="card-icon">📢</div>
-          <div class="card-title">Ads</div>
-        </div>
-        <div class="about-service-card">
-          <div class="card-icon">🎨</div>
-          <div class="card-title">Branding</div>
-        </div>
-        <div class="about-service-card">
-          <div class="card-icon">📱</div>
-          <div class="card-title">Social</div>
-        </div>
-        <div class="about-service-card" style="cursor:pointer;" onclick="window.open('https://github.com/looterstudio','_blank')">
-          <img src="/looterstudio-logo.png" alt="LooterStudio" style="width:32px;height:32px;object-fit:contain;margin-bottom:4px;">
-          <div class="card-title">LooterStudio®</div>
-        </div>
+        <div class="about-service-card" data-open-service="web"><div class="card-icon">🌐</div><div class="card-title">Websites</div></div>
+        <div class="about-service-card" data-open-service="software"><div class="card-icon">💻</div><div class="card-title">Software</div></div>
+        <div class="about-service-card" data-open-service="ads"><div class="card-icon">📢</div><div class="card-title">Ads</div></div>
+        <div class="about-service-card" data-open-service="branding"><div class="card-icon">🎨</div><div class="card-title">Branding</div></div>
+        <div class="about-service-card" data-open-service="social"><div class="card-icon">📱</div><div class="card-title">Social</div></div>
+        <div class="about-service-card" data-open-url="https://looterstudio.xyz"><img src="loot-stars.svg" alt="LooterStudio" class="card-stars"><div class="card-title">LooterStudio®</div></div>
       </div>
-      <p style="font-size:11px;color:#aaa;margin-top:16px;">always early, never wrong.</p>
+      <p class="about-foot">always early, never wrong.</p>
     </div>
   `;
-
-  createWindow('about', 'About LOUV', '🖥️', content, {
-    width: '520px',
-    height: '480px',
-  });
+  const win = createWindow('about', 'LOUVRE', '♥', content, { width: '560px', height: '640px' });
+  win.querySelectorAll('[data-open-service]').forEach((c) => c.addEventListener('click', () => openServiceWindow(c.dataset.openService)));
+  win.querySelectorAll('[data-open-url]').forEach((c) => c.addEventListener('click', () => window.open(c.dataset.openUrl, '_blank', 'noopener')));
 }
 
 // ============================================
@@ -410,17 +420,14 @@ function openContactWindow() {
       <h2>✉️ Contact</h2>
       <p style="color: #666; margin-bottom: 24px;">Got a project in mind? Let's talk.</p>
       <div class="contact-links">
-        <a href="mailto:hello@louv.agency" class="contact-link-item">
-          <span>📧</span> hello@louv.agency
+        <a href="mailto:lootstudioscorp@gmail.com" class="contact-link-item">
+          <span>📧</span> lootstudioscorp@gmail.com
         </a>
-        <a href="https://instagram.com/louv.agency" target="_blank" class="contact-link-item">
-          <span>📸</span> @louv.agency
+        <a href="https://x.com/loot16z" target="_blank" rel="noopener" class="contact-link-item">
+          <span>𝕏</span> @Loot16z
         </a>
-        <a href="https://wa.me/5491100000000" target="_blank" class="contact-link-item">
-          <span>💬</span> WhatsApp
-        </a>
-        <a href="https://github.com/looterstudio" target="_blank" class="contact-link-item">
-          <span>🐙</span> GitHub — LooterStudio®
+        <a href="https://looterstudio.xyz" target="_blank" rel="noopener" class="contact-link-item">
+          <span>★</span> looterstudio.xyz
         </a>
       </div>
     </div>

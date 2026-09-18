@@ -1,5 +1,5 @@
 /* ============================================
-   LOUV OS — Windows XP Desktop Theme
+   LOUVRE OS — Windows XP Desktop Theme
    ============================================ */
 
 * {
@@ -157,7 +157,7 @@ html, body {
 #desktop {
   width: 100%;
   height: 100%;
-  background: url('/wallpaper.jpg') center/cover no-repeat;
+  background: url('/louvre/wallpaper.jpg') center/cover no-repeat;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1015,3 +1015,203 @@ html, body {
     display: none;
   }
 }
+
+/* ============================================
+   XP, PROPERLY. Overrides: the real boot screen, shortcut arrows,
+   a denser icon grid, the disc-1 error box.
+   ============================================ */
+#boot-screen { background: #000; }
+.boot-content { gap: 0; }
+.boot-logo { flex-direction: row; align-items: center; gap: 22px; margin-bottom: 70px; animation: none; }
+.boot-stars { width: 84px; height: 84px; object-fit: contain; filter: drop-shadow(0 0 14px rgba(255,255,255,.25)); }
+.boot-text { font-family: Tahoma, 'Trebuchet MS', Arial, sans-serif; font-size: 44px; font-weight: 700; letter-spacing: -1px; color: #fff; line-height: 1; display: flex; flex-direction: column; }
+.boot-text small { display: block; font-size: 14px; font-weight: 400; letter-spacing: 1px; color: #ccc; margin-bottom: 4px; }
+.boot-xp { font-size: 30px; font-weight: 400; color: #ff8a1f; vertical-align: super; margin-left: 4px; letter-spacing: 0; }
+/* the loading bar: a dark frame with three blue blocks crossing it, forever */
+.boot-loader { width: 176px; height: 16px; border: 1px solid #7a7a7a; border-radius: 4px; padding: 2px; overflow: hidden; position: relative; background: #000; }
+.loader-blocks { position: absolute; top: 2px; left: 0; display: flex; gap: 2px; animation: xpBar 1.9s linear infinite; }
+.loader-block { width: 10px; height: 10px; border-radius: 1px; background: linear-gradient(180deg, #6fa8ff, #1c5ee6 55%, #0b3fb0); animation: none; opacity: 1; }
+.loader-block:nth-child(1) { background: linear-gradient(180deg, #a9c8ff, #4d84f5 55%, #1c5ee6); }
+.loader-block:nth-child(3) { background: linear-gradient(180deg, #4d84f5, #0b3fb0 55%, #072a78); }
+@keyframes xpBar { from { transform: translateX(-40px); } to { transform: translateX(180px); } }
+.boot-subtext { position: fixed; left: 40px; right: 40px; bottom: 34px; display: flex; justify-content: space-between; color: #bbb; font-family: Tahoma, Arial, sans-serif; font-size: 12px; letter-spacing: 0; text-transform: none; }
+.boot-right { color: #777; font-style: italic; }
+
+/* icons: a denser XP grid, in columns, with the shortcut arrow */
+#desktop-icons { padding: 12px 8px; grid-template-columns: repeat(auto-fill, 84px); grid-template-rows: repeat(auto-fill, 82px); gap: 2px; }
+.desktop-icon { width: 82px; padding: 5px 2px; gap: 3px; border-radius: 2px; }
+.desktop-icon .icon-image { width: 48px; height: 48px; position: relative; font-size: 34px; }
+.desktop-icon .icon-image img { width: 46px; height: 46px; border-radius: 0; }
+.desktop-icon .icon-image img.invert { filter: none; }
+.desktop-icon .icon-image img.paper { background: #ffffee; border: 1px solid #d9bfb7; padding: 6px 2px; box-sizing: border-box; }
+.icon-shortcut { position: absolute; left: 2px; bottom: 2px; width: 12px; height: 12px; background: #fff; border: 1px solid #6b6b6b; box-sizing: border-box; }
+.icon-shortcut::after { content: ''; position: absolute; left: 3px; top: 3px; width: 4px; height: 4px; border-top: 2px solid #1a3fb8; border-right: 2px solid #1a3fb8; transform: rotate(45deg); }
+.desktop-icon .icon-label { font-family: Tahoma, Arial, sans-serif; font-size: 11px; max-width: 82px; text-shadow: 0 1px 1px #000, 0 0 3px #000; }
+
+/* about window */
+.about-logo { width: 84px; height: 84px; object-fit: contain; margin-bottom: 6px; }
+.card-stars { width: 30px; height: 30px; object-fit: contain; margin-bottom: 4px; filter: invert(1); }
+.about-service-card { cursor: pointer; }
+.about-foot { font-size: 11px; color: #999; margin-top: 16px; font-style: italic; }
+
+/* the error box */
+.xp-error { display: flex; gap: 14px; align-items: center; padding: 18px 16px 8px; font-family: Tahoma, Arial, sans-serif; font-size: 12px; color: #000; }
+.xp-error__icon { font-size: 32px; }
+.xp-error p { margin: 0 0 6px; }
+.xp-error__actions { display: flex; justify-content: center; padding: 6px 0 12px; }
+.xp-btn { font: 12px Tahoma, Arial, sans-serif; padding: 4px 24px; border: 1px solid #003c74; border-radius: 3px; background: linear-gradient(180deg, #fff, #ecebe5); cursor: pointer; }
+.xp-btn:hover { box-shadow: inset 0 0 0 2px #f8d380; }
+.desktop-icon .icon-image img.dark { background: #000; border: 1px solid #333; padding: 7px; box-sizing: border-box; border-radius: 3px; }
+
+/* boot: the stars light up one by one, then breathe together, for as long as it loads */
+.boot-stars { width: 96px; height: 96px; overflow: visible; }
+.bs { opacity: .12; transform-origin: center; animation: starUp 6s ease-in-out infinite; }
+.bs-1 { animation-delay: 0s; } .bs-2 { animation-delay: .5s; } .bs-3 { animation-delay: 1s; } .bs-4 { animation-delay: 1.5s; } .bs-5 { animation-delay: 2s; } .bs-6 { animation-delay: 2.5s; }
+@keyframes starUp {
+  0% { opacity: .12; filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
+  8% { opacity: 1; filter: drop-shadow(0 0 10px rgba(255,255,255,.9)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 4px rgba(255,255,255,.4)); }
+  62% { opacity: .12; filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
+  100% { opacity: .12; }
+}
+
+/* ============================================
+   POLISH: Luna, properly. Tahoma everywhere, Trebuchet in the titles,
+   the start menu in two real columns, windows with a paper content area.
+   ============================================ */
+:root { --font-modern: Tahoma, 'Segoe UI', Verdana, sans-serif; --font-title: 'Trebuchet MS', Tahoma, sans-serif; }
+body { font-family: var(--font-system); -webkit-font-smoothing: antialiased; }
+
+/* windows */
+.xp-window { border-radius: 8px 8px 0 0; box-shadow: 0 0 0 1px #0831d9, 0 0 0 3px #0855dd, 4px 6px 18px rgba(0,0,0,.45); background: #ece9d8; }
+.window-titlebar { min-height: 30px; padding: 3px 5px 3px 8px; }
+.window-titlebar-text { font-family: var(--font-title); font-size: 13px; letter-spacing: 0; text-shadow: 1px 1px 0 #0a1f6b; }
+.window-content { background: #fff; margin: 0 3px 3px; border: 1px solid #919b9c; font-family: var(--font-modern); }
+.window-address-bar { background: #ece9d8; border-bottom: 1px solid #aca899; font-size: 11px; }
+.client-content { font-family: var(--font-modern); }
+.client-logo { border-radius: 8px; }
+.client-name { font-family: var(--font-title); font-weight: 700; font-size: 24px; letter-spacing: -.3px; color: #000; }
+.client-description { font-size: 13px; line-height: 1.5; color: #333; }
+.service-tag { background: #ece9d8; border: 1px solid #aca899; border-radius: 2px; font-size: 11px; color: #000; padding: 2px 8px; }
+.client-link { background: linear-gradient(180deg, #fff, #ecebe5); color: #000; border: 1px solid #003c74; border-radius: 3px; font-size: 12px; font-family: var(--font-modern); box-shadow: inset 0 0 0 2px #f8d380; }
+.client-link:hover { filter: brightness(1.03); background: linear-gradient(180deg, #fff, #ecebe5); }
+.about-content h2 { font-family: var(--font-title); font-weight: 700; font-size: 26px; color: #000; letter-spacing: -.3px; }
+.about-content .about-sub { font-size: 11px; letter-spacing: 3px; }
+.about-content p { font-size: 13px; line-height: 1.5; }
+.about-service-card { background: #f4f3ee; border: 1px solid #d8d4c4; border-radius: 3px; }
+.about-service-card:hover { background: #fff; border-color: #0a246a; }
+.about-service-card .card-title { font-size: 11px; font-weight: 700; }
+
+/* start menu: the real two columns */
+#start-menu { width: 400px; border-radius: 6px 6px 0 0; box-shadow: 0 0 0 1px #0831d9, 2px -2px 14px rgba(0,0,0,.45); }
+.start-menu-header { padding: 8px 10px; min-height: 60px; background: linear-gradient(180deg, #1c58d5 0%, #3f81ee 10%, #2367dd 45%, #1b5bd3 100%); border-bottom: 2px solid #ff8f1f; }
+.start-menu-avatar { width: 44px; height: 44px; border: 2px solid #fff; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,.4); }
+.start-menu-user { font-family: var(--font-title); font-size: 15px; }
+.start-menu-body { min-height: 320px; }
+.start-menu-left { padding: 4px 0 0; }
+.start-menu-item { padding: 6px 10px; }
+.start-item-title { font-size: 12px; font-weight: 700; color: #000; }
+.start-item-desc { font-size: 10px; color: #777; }
+.start-menu-right { width: 160px; background: #d3e5fa; border-left: 1px solid #95bde7; padding: 6px 0; }
+.start-menu-item-right { font-size: 12px; font-weight: 700; color: #0a246a; padding: 7px 10px; }
+.start-menu-item-right:hover { background: #2f71cd; color: #fff; }
+.start-menu-separator-right { background: #95bde7; }
+.start-menu-item-right.shutdown { color: #0a246a; }
+.start-menu-item-right.shutdown:hover { background: #c33; color: #fff; }
+
+/* taskbar */
+#taskbar { height: 34px; }
+#start-button { height: 30px; font-family: var(--font-title); font-style: italic; font-size: 14px; letter-spacing: 0; padding-right: 16px; border-radius: 0 10px 10px 0; box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 2px 0 4px rgba(0,0,0,.25); }
+.start-btn-logo { width: 20px; height: 20px; filter: drop-shadow(0 1px 1px rgba(0,0,0,.4)); }
+.taskbar-item { font-family: var(--font-modern); font-size: 11px; border-radius: 3px; }
+#system-tray { background: linear-gradient(180deg, #0f9ae9 0%, #14a2ef 8%, #0c8bde 50%, #0a80d0 100%); border-left: 1px solid #0a5fb8; box-shadow: inset 1px 0 0 rgba(255,255,255,.35); }
+#clock { font-family: var(--font-modern); font-size: 11px; text-shadow: 0 1px 1px rgba(0,0,0,.4); }
+
+/* desktop labels */
+.desktop-icon .icon-label { font-size: 11px; letter-spacing: 0; }
+
+/* ============================================
+   BOOT, in three acts: POST, the XP loader, Welcome.
+   ============================================ */
+#boot-screen { display: block; }
+#post, #boot-xp, .welcome { display: none; }
+#post.is-on, .welcome.is-on { display: block; }
+#boot-xp.is-on { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; }
+#boot-screen .post { margin: 0; padding: 28px 32px; font: 15px/1.55 'Courier New', 'Lucida Console', monospace; color: #c8c8c8; white-space: pre-wrap; text-align: left; }
+.post__cur { animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+/* the XP act */
+.boot-logo { margin-bottom: 64px; }
+.boot-stars { width: 104px; height: 104px; }
+.boot-text { font-family: 'Franklin Gothic Medium', 'Trebuchet MS', Tahoma, sans-serif; }
+.boot-text small { font-size: 15px; color: #d6d6d6; letter-spacing: .5px; margin-bottom: 2px; font-family: 'Trebuchet MS', Tahoma, sans-serif; }
+.boot-word { font-size: 46px; font-weight: 700; letter-spacing: -1.5px; color: #fff; line-height: 1; }
+.boot-xp { font-size: 34px; font-weight: 700; color: #f68b1f; margin-left: 6px; letter-spacing: -1px; vertical-align: 6px; font-family: 'Trebuchet MS', Tahoma, sans-serif; }
+.boot-loader { width: 160px; height: 14px; border: 1px solid #8a8a8a; border-radius: 4px; padding: 1px; }
+.loader-blocks { top: 1px; gap: 1px; animation: xpBar 2.1s linear infinite; }
+.loader-block { width: 9px; height: 9px; }
+@keyframes xpBar { from { transform: translateX(-34px); } to { transform: translateX(164px); } }
+.boot-subtext { font-size: 12px; }
+.boot-right { font-family: 'Trebuchet MS', Tahoma, sans-serif; font-weight: 700; font-style: normal; color: #ddd; font-size: 15px; }
+.boot-right sup { font-size: 8px; font-weight: 400; }
+/* welcome */
+.welcome { position: absolute; inset: 0; background: linear-gradient(180deg, #5a7edc 0, #3f66d0 30%, #3a5fc9 100%); }
+.welcome::before, .welcome::after { content: ''; position: absolute; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #f6a83a, #ffd27a, #f6a83a); }
+.welcome::before { top: 60px; } .welcome::after { bottom: 60px; }
+.welcome__band { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 26px; }
+.welcome__logo { width: 64px; height: 64px; display: block; filter: drop-shadow(0 2px 6px rgba(0,0,0,.4)); }
+.welcome__logo svg { width: 100%; height: 100%; }
+.welcome__logo .bs { opacity: 1; animation: none; }
+.welcome__text { font-family: 'Franklin Gothic Medium', 'Trebuchet MS', Tahoma, sans-serif; font-style: italic; font-size: 34px; color: #fff; letter-spacing: -.5px; text-shadow: 0 2px 4px rgba(0,0,0,.35); }
+
+/* ============================================
+   BOOT, act two, with more life: a lit wordmark and a glossy bar
+   ============================================ */
+.bs { animation-duration: 3.2s; }
+.bs-1 { animation-delay: 0s; } .bs-2 { animation-delay: .3s; } .bs-3 { animation-delay: .6s; } .bs-4 { animation-delay: .9s; } .bs-5 { animation-delay: 1.2s; } .bs-6 { animation-delay: 1.5s; }
+.boot-logo { gap: 26px; margin-bottom: 58px; }
+.boot-text { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.boot-word { font-family: 'Franklin Gothic Medium', 'Trebuchet MS', Tahoma, sans-serif; font-size: 54px; font-weight: 700; letter-spacing: -2px; line-height: 1;
+  background: linear-gradient(180deg, #ffffff 0%, #e9eef8 55%, #b9c4da 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 18px rgba(120,160,255,.35)); }
+.boot-xp { font-size: 38px; font-weight: 700; letter-spacing: -1px; margin-left: 8px; vertical-align: 8px;
+  background: linear-gradient(180deg, #ffc46b 0%, #ff9a2e 50%, #f06a00 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 12px rgba(255,150,40,.55)); }
+.boot-text small { font-family: 'Trebuchet MS', Tahoma, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: #f4a7c3; margin: 0; }
+.boot-text small sup { font-size: 7px; letter-spacing: 0; }
+/* the bar: a dark glass trough, three glossy blocks with a light trail */
+.boot-loader { width: 210px; height: 18px; border: 1px solid #5a6270; border-radius: 6px; padding: 2px; background: linear-gradient(180deg, #05070c, #10141c); box-shadow: inset 0 1px 3px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.04), 0 0 24px rgba(60,110,255,.12); overflow: hidden; position: relative; }
+.boot-loader::after { content: ''; position: absolute; left: 6px; right: 6px; top: 2px; height: 5px; border-radius: 4px; background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,0)); pointer-events: none; }
+.loader-blocks { position: absolute; top: 2px; left: 0; display: flex; gap: 3px; animation: xpBar 1.6s cubic-bezier(.35,.05,.65,.95) infinite; }
+.loader-blocks i { display: block; width: 14px; height: 12px; border-radius: 2px; background: linear-gradient(180deg, #9cc4ff 0%, #4a8cff 45%, #1d5fe6 55%, #1447b8 100%); box-shadow: 0 0 10px rgba(80,140,255,.8), inset 0 1px 0 rgba(255,255,255,.55); }
+.loader-blocks i:nth-child(1) { opacity: .55; } .loader-blocks i:nth-child(2) { opacity: .85; }
+@keyframes xpBar { from { transform: translateX(-52px); } to { transform: translateX(216px); } }
+.boot-subtext { color: #8b93a3; }
+
+/* ============================================
+   xp.css does the window chrome now. Ours only positions it.
+   ============================================ */
+.xp-window.window { position: absolute; display: flex; flex-direction: column; padding: 0; border-radius: 8px 8px 0 0; box-shadow: 4px 6px 18px rgba(0,0,0,.45); background: #ece9d8; overflow: hidden; }
+.xp-window .title-bar { cursor: move; user-select: none; }
+.xp-window .title-bar-text { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+.xp-window .window-titlebar-icon { font-size: 14px; width: 16px; text-align: center; }
+.xp-window .window-body { flex: 1; overflow: auto; margin: 0; background: #fff; border: 1px solid #919b9c; font-family: Tahoma, 'Segoe UI', sans-serif; }
+.xp-window .window-toolbar { border-bottom: 1px solid #aca899; }
+/* folder icons carry a small emblem, the client's mark */
+.desktop-icon .icon-image { overflow: visible; }
+.desktop-icon .icon-image img { width: 48px; height: 48px; }
+.icon-emblem { position: absolute; right: -2px; bottom: 0; font-size: 18px; line-height: 1; filter: drop-shadow(0 1px 1px rgba(0,0,0,.5)); }
+.client-emblem { font-size: 48px; line-height: 1; display: inline-block; }
+body { font-family: Tahoma, 'Segoe UI', sans-serif; }
+
+/* ============================================
+   The wordmark, the way XP did it: a quiet maker line, a heavy clean name,
+   and the lowercase orange suffix. No gradients, no glow, no pink.
+   ============================================ */
+.boot-logo { gap: 24px; margin-bottom: 56px; align-items: center; }
+.boot-stars { width: 96px; height: 96px; filter: none; }
+.boot-text { gap: 0; }
+.boot-text small { font-family: 'Archivo', 'Trebuchet MS', sans-serif; font-size: 17px; font-weight: 400; letter-spacing: 0; text-transform: none; color: #e6e6e6; margin: 0 0 -2px 2px; }
+.boot-text small sup { font-size: 9px; }
+.boot-word { font-family: 'Archivo', 'Franklin Gothic Medium', Arial, sans-serif; font-size: 58px; font-weight: 800; letter-spacing: -2.5px; line-height: 1.05; background: none; -webkit-background-clip: initial; background-clip: initial; color: #fff; filter: none; }
+.boot-xp { font-family: 'Archivo', 'Trebuchet MS', sans-serif; font-style: italic; font-weight: 600; font-size: 36px; letter-spacing: -1px; margin-left: 5px; vertical-align: 9px; background: none; -webkit-background-clip: initial; background-clip: initial; color: #f7941d; filter: none; }

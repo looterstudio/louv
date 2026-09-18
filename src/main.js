@@ -128,6 +128,7 @@ function handleIconOpen(client) {
   if (client.isSpecial) {
     if (client.action === 'about') openAboutWindow();
     else if (client.action === 'game') openGameError(client);
+    else if (client.action === 'contact') openContactWindow();
     return;
   }
   openClientWindow(client);
@@ -344,7 +345,7 @@ function openClientWindow(client) {
       <p class="client-description">${client.description}</p>
       <div class="client-services">${serviceTags}</div>
       ${client.url ? `<a href="${client.url}" target="_blank" rel="noopener" class="client-link">
-        🌐 Visit Website →
+        Visit website →
       </a>` : ''}
     </div>
   `;

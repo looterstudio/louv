@@ -12,15 +12,11 @@ export const clients = [
   // ── games (they never open, like the good old days)
   { id: 'vice-city', name: 'Vice City', icon: '🌴', iconType: 'image', iconSrc: 'icons/vicecity.png', isSpecial: true, action: 'game' },
   { id: 'tibia', name: 'Tibia', icon: '⚔️', iconType: 'image', iconSrc: 'icons/tibia.png', isSpecial: true, action: 'game' },
-  // ── clients (placeholders until the real ones land)
-  { id: 'urban-wear', name: 'Urban Wear', icon: '👕', iconType: 'folder', url: 'https://urbanwear.com', description: 'Urban streetwear brand. Full e-commerce with dynamic catalog and integrated payments.', services: ['Website', 'E-commerce', 'Branding'] },
-  { id: 'cafe-roma', name: 'Café Roma', icon: '☕', iconType: 'folder', url: 'https://caferoma.com', description: 'Premium coffee chain. Landing page with interactive menu, reservations, and social media.', services: ['Website', 'Social', 'Ads'] },
-  { id: 'neon-fitness', name: 'Neon Fitness', icon: '💪', iconType: 'folder', url: 'https://neonfitness.com', description: 'Boutique gym. Booking app, website with training plans, Meta + Google ads.', services: ['Software', 'Website', 'Ads'] },
-  { id: 'aurora-beauty', name: 'Aurora Beauty', icon: '💄', iconType: 'folder', url: 'https://aurorabeauty.com', description: 'Natural cosmetics. Online store with express checkout and full brand identity.', services: ['E-commerce', 'Branding'] },
-  { id: 'tech-nova', name: 'TechNova', icon: '🚀', iconType: 'folder', url: 'https://technova.io', description: 'Tech startup. Internal dashboard, B2B landing, SEM/SEO campaigns.', services: ['Software', 'Website', 'Ads'] },
-  { id: 'verde-organico', name: 'Verde Organic', icon: '🌿', iconType: 'folder', url: 'https://verdeorganic.com', description: 'Organic food brand. Packaging, identity, and a store that ships.', services: ['Branding', 'E-commerce'] },
-  { id: 'studio-arc', name: 'Studio ARC', icon: '🏗️', iconType: 'folder', url: 'https://studioarc.com', description: 'Architecture studio. Portfolio site and social content.', services: ['Website', 'Social'] },
-  { id: 'beats-records', name: 'Beats Records', icon: '🎵', iconType: 'folder', url: 'https://beatsrecords.com', description: 'Independent label. Release pages, visuals, and launch ads.', services: ['Branding', 'Ads', 'Social'] },
+  // ── clients
+  { id: 'villarroel', name: 'Clínica Villarroel', icon: '🦷', iconType: 'folder', url: 'https://clinica-villarroel.vercel.app', description: 'Clínica Odontológica Villarroel, Cochabamba. Website, patient portal with clinical records and appointments, and an AI assistant for patients.', services: ['Website', 'Software', 'Branding'] },
+  { id: 'client-002', name: 'Client 002', icon: '📁', iconType: 'folder', description: 'In progress.', services: ['soon'] },
+  { id: 'client-003', name: 'Client 003', icon: '📁', iconType: 'folder', description: 'In progress.', services: ['soon'] },
+  { id: 'start', name: 'Start a project', icon: '✉️', iconType: 'image', iconSrc: 'icons/mail.svg', isSpecial: true, action: 'contact' },
 ];
 
 export const services = {

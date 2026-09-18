@@ -1282,3 +1282,13 @@ body { font-family: Tahoma, 'Segoe UI', sans-serif; }
 @media (max-width: 640px) { .boot-mark { width: 120px; height: 120px; } .boot-name { font-size: 19px; } #boot-xp .boot-stars { margin-top: 48px; } }
 .desktop-icon .icon-image img.app { border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,.35); }
 .boot-agency { font-family: 'Archivo', 'Trebuchet MS', sans-serif; font-weight: 400; font-style: italic; font-size: 15px; letter-spacing: .3em; text-indent: .3em; color: #cfd3da; margin-top: 6px; animation: fadeUp 1.2s .4s ease-out both; }
+
+/* the wordmark: Syne, wide and heavy, with AGENCY as a small spaced tag */
+.boot-name { font-family: 'Syne', 'Archivo', sans-serif; font-weight: 800; font-size: 64px; letter-spacing: -.05em; text-indent: 0; line-height: 1; }
+.boot-agency { font-family: 'Archivo', sans-serif; font-style: normal; font-weight: 600; font-size: 11px; letter-spacing: .46em; text-indent: .46em; color: #9aa0ab; margin-top: 8px; }
+.boot-by { margin-top: 22px; }
+.boot-mark { margin-bottom: 26px; }
+.start-menu-user, #start-button, .about-content h2 { font-family: 'Syne', 'Trebuchet MS', sans-serif; font-weight: 800; font-style: normal; letter-spacing: -.03em; }
+#start-button { font-size: 15px; }
+.about-content h2 { font-size: 30px; }
+@media (max-width: 640px) { .boot-name { font-size: 52px; } }

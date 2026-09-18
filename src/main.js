@@ -105,7 +105,6 @@ function handleIconOpen(client) {
     if (client.action === 'about') {
       openAboutWindow();
     } else if (client.action === 'recycle') {
-      // Recycle bin - do nothing special
       return;
     } else if (client.id === 'ie-browser') {
       openAboutWindow();
@@ -120,7 +119,6 @@ function handleIconOpen(client) {
 // WINDOWS
 // ============================================
 function createWindow(id, title, icon, content, options = {}) {
-  // If window already exists, focus it
   if (openWindows[id]) {
     focusWindow(openWindows[id].element);
     return openWindows[id].element;
@@ -131,7 +129,6 @@ function createWindow(id, title, icon, content, options = {}) {
   win.className = 'xp-window';
   win.dataset.windowId = id;
 
-  // Position
   const offsetCount = Object.keys(openWindows).length;
   const left = 80 + (offsetCount * 30);
   const top = 40 + (offsetCount * 30);
@@ -141,27 +138,24 @@ function createWindow(id, title, icon, content, options = {}) {
   win.style.height = options.height || '420px';
   win.style.zIndex = ++windowZIndex;
 
-  // Build title bar
   const titlebar = document.createElement('div');
   titlebar.className = 'window-titlebar';
   titlebar.innerHTML = `
     <span class="window-titlebar-icon">${icon}</span>
     <span class="window-titlebar-text">${title}</span>
     <div class="window-controls">
-      <button class="window-btn window-btn-minimize" title="Minimizar">_</button>
-      <button class="window-btn window-btn-maximize" title="Maximizar">□</button>
-      <button class="window-btn window-btn-close" title="Cerrar">✕</button>
+      <button class="window-btn window-btn-minimize" title="Minimize">_</button>
+      <button class="window-btn window-btn-maximize" title="Maximize">□</button>
+      <button class="window-btn window-btn-close" title="Close">✕</button>
     </div>
   `;
 
-  // Window body
   const body = document.createElement('div');
   body.className = 'window-body';
   body.innerHTML = content;
 
   win.appendChild(titlebar);
 
-  // Optional toolbar
   if (options.toolbar) {
     const toolbar = document.createElement('div');
     toolbar.className = 'window-toolbar';
@@ -172,7 +166,6 @@ function createWindow(id, title, icon, content, options = {}) {
   win.appendChild(body);
   container.appendChild(win);
 
-  // Window controls
   const closeBtn = titlebar.querySelector('.window-btn-close');
   const minBtn = titlebar.querySelector('.window-btn-minimize');
   const maxBtn = titlebar.querySelector('.window-btn-maximize');
@@ -181,7 +174,6 @@ function createWindow(id, title, icon, content, options = {}) {
   minBtn.addEventListener('click', () => minimizeWindow(id));
   maxBtn.addEventListener('click', () => toggleMaximize(win));
 
-  // Drag
   titlebar.addEventListener('mousedown', (e) => {
     if (e.target.closest('.window-btn')) return;
     isDragging = true;
@@ -191,10 +183,8 @@ function createWindow(id, title, icon, content, options = {}) {
     focusWindow(win);
   });
 
-  // Focus on click
   win.addEventListener('mousedown', () => focusWindow(win));
 
-  // Store
   openWindows[id] = {
     element: win,
     title,
@@ -202,21 +192,17 @@ function createWindow(id, title, icon, content, options = {}) {
     minimized: false,
   };
 
-  // Add to taskbar
   addTaskbarItem(id, title, icon);
-
   return win;
 }
 
 function focusWindow(win) {
-  // Deactivate all
   document.querySelectorAll('.xp-window').forEach(w => {
     w.classList.add('inactive');
   });
   win.classList.remove('inactive');
   win.style.zIndex = ++windowZIndex;
 
-  // Update taskbar active state
   document.querySelectorAll('.taskbar-item').forEach(item => {
     item.classList.remove('active');
   });
@@ -241,7 +227,6 @@ function closeWindow(id) {
 function minimizeWindow(id) {
   const winData = openWindows[id];
   if (!winData) return;
-
   winData.element.style.display = 'none';
   winData.minimized = true;
 }
@@ -249,7 +234,6 @@ function minimizeWindow(id) {
 function restoreWindow(id) {
   const winData = openWindows[id];
   if (!winData) return;
-
   winData.element.style.display = 'flex';
   winData.minimized = false;
   focusWindow(winData.element);
@@ -291,7 +275,6 @@ function addTaskbarItem(id, title, icon) {
   item.addEventListener('click', () => {
     const winData = openWindows[id];
     if (!winData) return;
-
     if (winData.minimized) {
       restoreWindow(id);
     } else if (winData.element.classList.contains('inactive')) {
@@ -301,7 +284,6 @@ function addTaskbarItem(id, title, icon) {
     }
   });
 
-  // Deactivate all other items
   document.querySelectorAll('.taskbar-item').forEach(ti => ti.classList.remove('active'));
   container.appendChild(item);
 }
@@ -330,7 +312,7 @@ function openClientWindow(client) {
       <p class="client-description">${client.description}</p>
       <div class="client-services">${serviceTags}</div>
       ${client.url ? `<a href="${client.url}" target="_blank" rel="noopener" class="client-link">
-        🌐 Visitar sitio web →
+        🌐 Visit Website →
       </a>` : ''}
     </div>
   `;
@@ -338,7 +320,7 @@ function openClientWindow(client) {
   const toolbar = `
     <div class="window-address-bar">
       <span class="address-icon">📄</span>
-      <span class="address-text">${client.url || 'file:///C:/Clientes/' + client.name}</span>
+      <span class="address-text">${client.url || 'file:///C:/Clients/' + client.name}</span>
       ${client.url ? `<a href="${client.url}" target="_blank" class="address-go">→</a>` : ''}
     </div>
   `;
@@ -381,12 +363,12 @@ function openAboutWindow() {
     <div class="about-content">
       <img src="/louv-logo.jpg" alt="LOUV" style="width:80px;height:80px;object-fit:contain;border-radius:16px;margin-bottom:8px;">
       <h2>LOUV</h2>
-      <p class="about-sub">Agencia Creativa Digital</p>
-      <p>Transformamos ideas en experiencias digitales únicas. Desde el diseño web hasta la gestión integral de tu marca online.</p>
+      <p class="about-sub">Creative Digital Agency</p>
+      <p>We transform ideas into unique digital experiences. From web design to full online brand management.</p>
       <div class="about-services-grid">
         <div class="about-service-card">
           <div class="card-icon">🌐</div>
-          <div class="card-title">Diseño Web</div>
+          <div class="card-title">Web Design</div>
         </div>
         <div class="about-service-card">
           <div class="card-icon">💻</div>
@@ -402,7 +384,7 @@ function openAboutWindow() {
         </div>
         <div class="about-service-card">
           <div class="card-icon">📱</div>
-          <div class="card-title">Redes</div>
+          <div class="card-title">Social</div>
         </div>
         <div class="about-service-card" style="cursor:pointer;" onclick="window.open('https://github.com/looterstudio','_blank')">
           <img src="/looterstudio-logo.png" alt="LooterStudio" style="width:32px;height:32px;object-fit:contain;margin-bottom:4px;">
@@ -413,7 +395,7 @@ function openAboutWindow() {
     </div>
   `;
 
-  createWindow('about', 'Sobre LOUV', '🖥️', content, {
+  createWindow('about', 'About LOUV', '🖥️', content, {
     width: '520px',
     height: '480px',
   });
@@ -425,11 +407,11 @@ function openAboutWindow() {
 function openContactWindow() {
   const content = `
     <div class="contact-content">
-      <h2>✉️ Contacto</h2>
-      <p style="color: #666; margin-bottom: 24px;">¿Tenés un proyecto en mente? Hablemos.</p>
+      <h2>✉️ Contact</h2>
+      <p style="color: #666; margin-bottom: 24px;">Got a project in mind? Let's talk.</p>
       <div class="contact-links">
-        <a href="mailto:hola@louv.agency" class="contact-link-item">
-          <span>📧</span> hola@louv.agency
+        <a href="mailto:hello@louv.agency" class="contact-link-item">
+          <span>📧</span> hello@louv.agency
         </a>
         <a href="https://instagram.com/louv.agency" target="_blank" class="contact-link-item">
           <span>📸</span> @louv.agency
@@ -438,13 +420,13 @@ function openContactWindow() {
           <span>💬</span> WhatsApp
         </a>
         <a href="https://github.com/looterstudio" target="_blank" class="contact-link-item">
-          <span>🐙</span> GitHub — Looter Studios
+          <span>🐙</span> GitHub — LooterStudio®
         </a>
       </div>
     </div>
   `;
 
-  createWindow('contact', 'Contacto', '✉️', content, {
+  createWindow('contact', 'Contact', '✉️', content, {
     width: '440px',
     height: '400px',
   });
@@ -462,7 +444,6 @@ function initStartMenu() {
     startMenu.classList.toggle('hidden');
   });
 
-  // Service items
   startMenu.querySelectorAll('.start-menu-item[data-service]').forEach(item => {
     item.addEventListener('click', () => {
       const serviceKey = item.dataset.service;
@@ -471,7 +452,6 @@ function initStartMenu() {
     });
   });
 
-  // Action items
   startMenu.querySelectorAll('.start-menu-item[data-action]').forEach(item => {
     item.addEventListener('click', () => {
       const action = item.dataset.action;
@@ -481,7 +461,6 @@ function initStartMenu() {
     });
   });
 
-  // Right side items
   startMenu.querySelectorAll('.start-menu-item-right[data-action]').forEach(item => {
     item.addEventListener('click', () => {
       const action = item.dataset.action;
@@ -512,14 +491,14 @@ function showContextMenu(e) {
   menu.style.top = `${e.clientY}px`;
 
   const items = [
-    { label: 'Ver → Íconos grandes', action: () => {} },
-    { label: 'Ordenar por → Nombre', action: () => {} },
+    { label: 'View → Large Icons', action: () => {} },
+    { label: 'Sort by → Name', action: () => {} },
     { separator: true },
-    { label: 'Actualizar', action: () => location.reload() },
+    { label: 'Refresh', action: () => location.reload() },
     { separator: true },
-    { label: 'Nuevo → Carpeta', action: () => {} },
+    { label: 'New → Folder', action: () => {} },
     { separator: true },
-    { label: 'Propiedades', action: () => openAboutWindow() },
+    { label: 'Properties', action: () => openAboutWindow() },
   ];
 
   items.forEach(item => {
@@ -542,7 +521,6 @@ function showContextMenu(e) {
   document.body.appendChild(menu);
   contextMenu = menu;
 
-  // Adjust position if menu goes off screen
   const rect = menu.getBoundingClientRect();
   if (rect.right > window.innerWidth) {
     menu.style.left = `${window.innerWidth - rect.width - 5}px`;
@@ -563,7 +541,6 @@ function removeContextMenu() {
 // GLOBAL EVENT LISTENERS
 // ============================================
 function initEvents() {
-  // Mouse move for window dragging
   document.addEventListener('mousemove', (e) => {
     if (isDragging && dragWindow) {
       const x = e.clientX - dragOffset.x;
@@ -574,13 +551,11 @@ function initEvents() {
     }
   });
 
-  // Mouse up
   document.addEventListener('mouseup', () => {
     isDragging = false;
     dragWindow = null;
   });
 
-  // Click on desktop = deselect icons, close start menu
   document.getElementById('desktop').addEventListener('click', (e) => {
     if (e.target.id === 'desktop' || e.target.id === 'desktop-icons') {
       document.querySelectorAll('.desktop-icon.selected').forEach(el => {
@@ -592,10 +567,8 @@ function initEvents() {
     removeContextMenu();
   });
 
-  // Right click on desktop
   document.getElementById('desktop-icons').addEventListener('contextmenu', showContextMenu);
 
-  // Close start menu on any outside click
   document.addEventListener('click', (e) => {
     const startMenu = document.getElementById('start-menu');
     const startBtn = document.getElementById('start-button');
@@ -604,7 +577,6 @@ function initEvents() {
     }
   });
 
-  // Keyboard
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       removeContextMenu();

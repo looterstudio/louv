@@ -129,7 +129,7 @@ function handleIconOpen(client) {
     if (client.action === 'about') openAboutWindow();
     else if (client.action === 'game') openGameError(client);
     else if (client.action === 'contact') openContactWindow();
-    else if (client.action === 'sazzy') openLooterio();
+    else if (client.action === 'looterio') openLooterio();
     return;
   }
   openClientWindow(client);

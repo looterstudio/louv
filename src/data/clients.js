@@ -1,12 +1,12 @@
 // ============================================
-// LOUVRE OS — Desktop
+// LUV OS — Desktop
 // Every icon is a shortcut. Edit here to add clients.
 // ============================================
 
 export const clients = [
   // ── system
   { id: 'internet', name: 'Internet', icon: '🌐', iconType: 'image', iconSrc: 'icons/ie.png', iconFallback: 'icons/globe.svg', description: 'The Looter browser. Coming soon.', services: [], isSpecial: true, action: 'about' },
-  { id: 'louv', name: 'LOUVRE', icon: '♥', iconType: 'image', iconSrc: 'louvre-logo.svg', isSpecial: true, action: 'about' },
+  { id: 'louv', name: 'LUV Agency', icon: '♥', iconType: 'image', iconSrc: 'luv-logo.svg', isSpecial: true, action: 'about' },
   { id: 'mi-pc', name: 'My Computer', icon: '🖥️', iconType: 'image', iconSrc: 'icons/computer.svg', isSpecial: true, action: 'about' },
   { id: 'papelera', name: 'Recycle Bin', icon: '🗑️', iconType: 'image', iconSrc: 'icons/bin.svg', isSpecial: true, action: 'recycle' },
   // ── games (they never open, like the good old days)

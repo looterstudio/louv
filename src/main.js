@@ -1,5 +1,5 @@
 // ============================================
-// LOUVRE OS — Main Application
+// LUV OS — Main Application
 // Windows XP Desktop Simulation
 // ============================================
 
@@ -394,8 +394,8 @@ function openServiceWindow(serviceKey) {
 function openAboutWindow() {
   const content = `
     <div class="about-content">
-      <img src="louvre-logo.svg" alt="LOUVRE" class="about-logo">
-      <h2>LOUVRE</h2>
+      <img src="luv-logo.svg" alt="LUV Agency" class="about-logo">
+      <h2>LUV Agency</h2>
       <p class="about-sub">The agency of LooterStudio®</p>
       <p>We build internet businesses and brands. Websites, software, ads, branding, social. Everything, as one team.</p>
       <div class="about-services-grid">
@@ -409,7 +409,7 @@ function openAboutWindow() {
       <p class="about-foot">always early, never wrong.</p>
     </div>
   `;
-  const win = createWindow('about', 'LOUVRE', '♥', content, { width: '560px', height: '640px' });
+  const win = createWindow('about', 'LUV Agency', '♥', content, { width: '560px', height: '640px' });
   win.querySelectorAll('[data-open-service]').forEach((c) => c.addEventListener('click', () => openServiceWindow(c.dataset.openService)));
   win.querySelectorAll('[data-open-url]').forEach((c) => c.addEventListener('click', () => window.open(c.dataset.openUrl, '_blank', 'noopener')));
 }

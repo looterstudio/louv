@@ -1259,3 +1259,7 @@ body { font-family: Tahoma, 'Segoe UI', sans-serif; }
   .taskbar-item span:not(.taskbar-icon) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   #tray-icons { display: none; }
 }
+
+/* no loading bar: the stars lighting up are the loader */
+.boot-loader { display: none !important; }
+.boot-logo { margin-bottom: 0; }

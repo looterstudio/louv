@@ -141,8 +141,8 @@ function openLooterio() {
     <div class="looterio">
       <img src="icons/looterio.png" alt="">
       <h2>Looterio</h2>
-      <p>The Looter browser. Coming soon.</p>
-      <div class="looterio__bar"><span>http://</span><i>looterio.looterstudio.xyz</i></div>
+      <p>The Looter search engine.</p>
+      <div class="looterio__bar"><span>http://</span><i>looterstudio.xyz/looterio</i></div>
     </div>`;
   createWindow('looterio', 'Looterio', '🌐', content, { width: '460px', height: '380px' });
 }
